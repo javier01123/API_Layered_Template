@@ -1,25 +1,83 @@
+
+using App.API.Middleware;
+using App.Application.SharedResources;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Newtonsoft.Json.Serialization;
+using System.Diagnostics;
+
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+var config = builder.Configuration;
+
+
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+services.AddLogging();
+services.AddLocalization(o => { o.ResourcesPath = "Resources"; });
+//using our text logger
+//builder.Logging.AddTextLogs();
+
+services.AddProblemDetails(options =>
+    options.CustomizeProblemDetails = (context) =>
+    {
+        context.ProblemDetails.Extensions["traceId"] = Activity.Current?.Id;
+    }
+).AddControllers()
+.AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+});
+    
+
+//services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
+
+//make http context accesso injectable in the Service Layer
+services.AddHttpContextAccessor();
+
+services.AddHealthChecks();
+
+//services.AddApplicationServices(config);
+//services.AddJwtAuthentication(config);
+
+//fluent validation
+services.AddFluentValidationAutoValidation(opts =>
+{
+//prevent mixing fluent validation and data annotations
+    opts.DisableDataAnnotationsValidation= true;
+}).AddFluentValidationClientsideAdapters();
+
+services.AddValidatorsFromAssemblyContaining<Program>();
+services.AddValidatorsFromAssemblyContaining<DTOProperties>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    //WARNING: dont use any origin in production
+    app.UseCors(options => options.AllowAnyMethod()
+                                  .AllowAnyHeader()
+                                  .AllowCredentials()                                    
+                                  .WithOrigins("http://localhost:3000")
+                );
 }
 
+app.UseStatusCodePages();
+app.UseMiddleware<AppExceptionsMiddleware>();
+
+app.UseRequestLocalization();
 app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseAuthorization();
-
 app.MapControllers();
-
+app.MapHealthChecks("/healthz");
 app.Run();
