@@ -1,0 +1,3 @@
+-add fluentvalidation
+-add entity framework (postgresql)
+-add docker compose file

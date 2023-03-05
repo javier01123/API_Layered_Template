@@ -8,9 +8,6 @@ namespace App.Common.Exceptions
 {
     public class BadRequestEx:Exception
     {
-
-        public BadRequestEx(string message) : base(message)
-        {
-        }
+        public BadRequestEx(string message) : base(message) { }
     }
 }

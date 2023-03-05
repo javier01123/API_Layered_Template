@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Tests.Architecture
+namespace App.Application.Loggers
 {
-    internal class LayeringTests
+    public class TextLogger
     {
     }
 }
