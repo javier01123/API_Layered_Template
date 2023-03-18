@@ -13,7 +13,12 @@ namespace App.Application.Services._Base
             Property = property;
             Message = message;
         }
-        public string Property { get; private set; }
+
+        public Error(string message)
+        {
+            Message = message;
+        }
+        public string? Property { get; private set; }
         public string Message { get; private set; }
     }
 }

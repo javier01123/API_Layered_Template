@@ -1,4 +1,6 @@
 ﻿using App.Application.Context;
+using App.Application.Services.Users.DTO;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +22,7 @@ namespace App.Application
                 options.UseNpgsql(config.GetConnectionString("Default"), b => b.MigrationsAssembly("App.Application"));
             });
 
+            services.AddValidatorsFromAssemblyContaining<CreateUserDTOValidator>();
         }
 
     }

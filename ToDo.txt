@@ -4,4 +4,7 @@
 -implement .net identity framework (user/role management) 
 
 postgres
-docker run --name postgres_15_2 -e POSTGRES_USER=demo_user -e POSTGRES_PASSWORD="8q4!&*1Fgr77" -e POSTGRES_DB=template_api_db -d postgres:15.2
+docker run --name postgres_15_2 -p 5432:5432 -e POSTGRES_USER=demo_user -e POSTGRES_PASSWORD="8q4!&*1Fgr77" -e POSTGRES_DB=template_api_db -d postgres:15.2
+
+implement identity and jwt
+https://www.endpointdev.com/blog/2022/06/implementing-authentication-in-asp.net-core-web-apis/
