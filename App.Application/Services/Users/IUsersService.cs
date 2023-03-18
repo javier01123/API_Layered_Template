@@ -5,6 +5,6 @@ namespace App.Application.Services.Users
 {
     public interface IUsersService
     {
-        Task<ServiceResult> Register(CreateUserDTO dto);
+        Task<ServiceResult> Register(RegisterUserDTO dto);
     }
 }

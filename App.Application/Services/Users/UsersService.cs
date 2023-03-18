@@ -19,7 +19,7 @@ namespace App.Application.Services.Users
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         }
         
-        public async Task<ServiceResult> Register(CreateUserDTO dto)
+        public async Task<ServiceResult> Register(RegisterUserDTO dto)
         {
             IdentityResult identityResult = await _userManager.CreateAsync(
                 new IdentityUser()

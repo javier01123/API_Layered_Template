@@ -21,7 +21,7 @@ namespace App.API.Controllers
 
         [AllowAnonymous()]
         [HttpPost]
-        public async Task RegisterUser(CreateUserDTO dto)
+        public async Task RegisterUser(RegisterUserDTO dto)
         {
             ServiceResult res = await _usersService.Register(dto);
         }
