@@ -18,8 +18,7 @@ namespace App.Application.Services.Users
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         }
-
-        //TODO: create a default for service result, like the TASK class, it can take a type or not.
+        
         public async Task<ServiceResult> Register(CreateUserDTO dto)
         {
             IdentityResult identityResult = await _userManager.CreateAsync(
@@ -31,7 +30,7 @@ namespace App.Application.Services.Users
 
             if (identityResult.Succeeded)
                 return ServiceResult.Success();
-
+     
             return ServiceResult.Failure(identityResult.MapResultToServiceErrors());
         }
 
