@@ -1,6 +1,7 @@
 
 using App.API.Middleware;
 using App.Application.SharedResources;
+using App.Application;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Newtonsoft.Json.Serialization;
@@ -9,8 +10,6 @@ using System.Diagnostics;
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var config = builder.Configuration;
-
-
 
 // Add services to the container.
 
@@ -41,7 +40,7 @@ services.AddHttpContextAccessor();
 
 services.AddHealthChecks();
 
-//services.AddApplicationServices(config);
+services.AddAplicationLayerServices(config);
 //services.AddJwtAuthentication(config);
 
 //fluent validation
