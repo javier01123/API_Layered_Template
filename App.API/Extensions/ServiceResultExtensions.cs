@@ -21,7 +21,7 @@ namespace App.API.Extensions
             var ms = new ModelStateDictionary();
             foreach (var error in errors)
                 if (string.IsNullOrWhiteSpace(error.Property))
-                    ms.AddModelError("non_model_error", error.Message);
+                    ms.AddModelError(ERROR_KEYS.NonModelError, error.Message);
                 else
                     ms.AddModelError(error.Property, error.Message);
             return ms;

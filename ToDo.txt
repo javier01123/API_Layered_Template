@@ -1,18 +1,17 @@
 
-poner el key non_model_error en una clase estatica
+
 -implement language header for localization?
 -create a property for non_model_errors in the json response. (what about errors returned automatically? is the property key empty)
--add problem details middleware 
--add problem details for manually return responses.
--add entity framework (postgresql)
+
+-poner el key non_model_error en una clase estatica
 -add docker compose file
-
-
-
-implement identity and jwt
+-implement identity and jwt
 https://www.endpointdev.com/blog/2022/06/implementing-authentication-in-asp.net-core-web-apis/
 
 Done:
+-add problem details middleware 
+-add problem details for manually return responses.
+-add entity framework (postgresql)
 -implement .net identity framework (user/role management) 
 
 postgres
