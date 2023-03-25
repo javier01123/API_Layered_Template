@@ -9,6 +9,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System;
+using App.API.Extensions.DI;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -18,6 +19,7 @@ var config = builder.Configuration;
 
 services.AddLogging();
 services.AddLocalization(o => { o.ResourcesPath = "Resources"; });
+services.ConfigureLocalization();
 //using our text logger
 //builder.Logging.AddTextLogs();
 
@@ -78,6 +80,7 @@ if (app.Environment.IsDevelopment())
                 );
 }
 
+app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 app.UseStatusCodePages();
 app.UseMiddleware<AppExceptionsMiddleware>();
 

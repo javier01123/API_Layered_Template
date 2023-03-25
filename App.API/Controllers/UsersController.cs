@@ -5,6 +5,7 @@ using App.Application.Services.Users.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace App.API.Controllers
 {
@@ -24,7 +25,7 @@ namespace App.API.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterUser(RegisterUserDTO dto)
         {
-            ServiceResult res = await _usersService.Register(dto);
+            ServiceResult res = await _usersService.Register(dto);                     
             return ServiceResultToResponse(res);    
         }
 
