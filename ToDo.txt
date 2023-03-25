@@ -1,4 +1,7 @@
--add fluentvalidation
+
+-create a property for non_model_errors in the json response. (what about errors returned automatically? is the property key empty)
+-add problem details middleware 
+-add problem details for manually return responses.
 -add entity framework (postgresql)
 -add docker compose file
 -implement .net identity framework (user/role management) 

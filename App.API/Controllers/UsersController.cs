@@ -22,9 +22,10 @@ namespace App.API.Controllers
 
         [AllowAnonymous()]
         [HttpPost]
-        public async Task RegisterUser(RegisterUserDTO dto)
+        public async Task<IActionResult> RegisterUser(RegisterUserDTO dto)
         {
             ServiceResult res = await _usersService.Register(dto);
+            return ServiceResultToResponse(res);    
         }
 
     }
