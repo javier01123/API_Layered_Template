@@ -1,4 +1,5 @@
-﻿using App.Application.Services._Base;
+﻿using App.API.Extensions;
+using App.Application.Services._Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,22 +14,19 @@ namespace App.API.Controllers.Common
     [Route("api/[controller]")]
     public abstract class APIBaseController : ControllerBase
     {
-        //TODO:create generic method to format service response
-
+        
         protected IActionResult ServiceResultToResponse(ServiceResult serviceResult)
         {
             if (serviceResult.IsSuccesful)
-                return Ok();
+                return Ok();            
+            return ValidationProblem(serviceResult.ErrorsToModelState());
+        }
 
-            //TODO: simplify create extension
-            var ms = new ModelStateDictionary();
-            foreach (var e in serviceResult.Errors)
-                if (string.IsNullOrWhiteSpace(e.Property))
-                    ms.AddModelError(string.Empty, e.Message);
-                else
-                    ms.AddModelError(e.Property, e.Message);
-
-            return ValidationProblem(ms);
+        protected IActionResult ServiceResultToResponse<T>(ServiceResult<T> serviceResult)
+        {
+            if (serviceResult.IsSuccesful)
+                return Ok(serviceResult.ReturnValue);
+            return ValidationProblem(serviceResult.ErrorsToModelState());
         }
 
     }

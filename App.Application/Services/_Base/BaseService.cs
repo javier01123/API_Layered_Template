@@ -12,6 +12,11 @@ namespace App.Application.Services._Base
 
         protected void AddError(string property, string message)
         {
+            if (string.IsNullOrWhiteSpace(property))
+            {
+                AddError(message);
+                return;
+            }
             _errors.Add(new Error(property, message));
         }
 

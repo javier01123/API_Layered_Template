@@ -18,7 +18,7 @@ namespace App.Application.Services._Base
         {
             Message = message;
         }
-        public string? Property { get; private set; }
+        public string Property { get; private set; }
         public string Message { get; private set; }
     }
 }
