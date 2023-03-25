@@ -31,9 +31,9 @@ namespace App.Application
             services.AddTransient<IUsersService, UsersService>();  
         }
 
-        public static void AddEFStores(this IdentityBuilder builder)
+        public static IdentityBuilder AddEFStores(this IdentityBuilder builder)
         {
-            builder.AddEntityFrameworkStores<AppDbContext>();
+            return builder.AddEntityFrameworkStores<AppDbContext>();
         }
 
     }

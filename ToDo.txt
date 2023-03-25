@@ -1,13 +1,17 @@
 
--localize Identity (current errors are shown in english)
+
 -implement localization on fluent validation.
 -add text logs
 -como regresa los errores de modelo MVC? vacio o con la propiedad "__all__"?
+-add custom property to user identity?
 
+-localize Identity (current errors are shown in english)
+https://ziyad.info/en/articles/20-Localizing_Identity_Error_Messages
+-see how AddDefaultTokenProviders() works
+https://stackoverflow.com/questions/35434427/adddefaulttokenproviders-what-is-it-and-how-to-use-those-default-providers
 -implement identity and jwt
--add docker compose file
-
 https://www.endpointdev.com/blog/2022/06/implementing-authentication-in-asp.net-core-web-apis/
+-add docker compose file
 
 Done:
 -implement localization middleware.

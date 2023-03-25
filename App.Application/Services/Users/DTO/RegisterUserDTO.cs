@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using App.Application.SharedResources;
+using FluentValidation;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +18,17 @@ namespace App.Application.Services.Users.DTO
 
     public class CreateUserDTOValidator:AbstractValidator<RegisterUserDTO>
     {
-        public CreateUserDTOValidator()
+        public CreateUserDTOValidator(IStringLocalizer<DTOProperties> localizer)
         {
-            RuleFor(x => x.UserName).NotEmpty();
-            RuleFor(x=>x.Password).NotEmpty();
+            RuleFor(x => x.UserName).NotEmpty()
+                                     .WithName(localizer["Username"]);
+
+            RuleFor(x => x.Password).NotEmpty()
+                                    .WithName(localizer["Password"]);
+
             RuleFor(x => x.Email).NotEmpty()
-                                 .EmailAddress();
+                                 .EmailAddress()
+                                 .WithName(localizer["Email"]);
         }
     }
 }

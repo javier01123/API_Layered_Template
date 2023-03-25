@@ -48,7 +48,8 @@ services.AddHealthChecks();
 //register identity user and entity framework as a store
 services.AddDefaultIdentity<IdentityUser>(options =>
                                           options.SignIn.RequireConfirmedAccount = true)
-        .AddEFStores();
+        .AddEFStores()
+        .AddDefaultTokenProviders();
 
 services.AddAplicationLayerServices(config);
 //services.AddJwtAuthentication(config);
