@@ -6,6 +6,9 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Newtonsoft.Json.Serialization;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -40,6 +43,11 @@ services.AddHttpContextAccessor();
 
 services.AddHealthChecks();
 
+//register identity user and entity framework as a store
+services.AddDefaultIdentity<IdentityUser>(options =>
+                                          options.SignIn.RequireConfirmedAccount = true)
+        .AddEFStores();
+
 services.AddAplicationLayerServices(config);
 //services.AddJwtAuthentication(config);
 
@@ -72,6 +80,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseStatusCodePages();
 app.UseMiddleware<AppExceptionsMiddleware>();
+
+
+    
 
 app.UseRequestLocalization();
 app.UseHttpsRedirection();

@@ -1,6 +1,8 @@
 ﻿using App.Application.Context;
+using App.Application.Services.Users;
 using App.Application.Services.Users.DTO;
 using FluentValidation;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +24,16 @@ namespace App.Application
                 options.UseNpgsql(config.GetConnectionString("Default"), b => b.MigrationsAssembly("App.Application"));
             });
 
-            services.AddValidatorsFromAssemblyContaining<CreateUserDTOValidator>();
+
+
+            services.AddValidatorsFromAssemblyContaining<CreateUserDTOValidator>();           
+
+            services.AddTransient<IUsersService, UsersService>();  
+        }
+
+        public static void AddEFStores(this IdentityBuilder builder)
+        {
+            builder.AddEntityFrameworkStores<AppDbContext>();
         }
 
     }
