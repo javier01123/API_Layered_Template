@@ -5,7 +5,7 @@ namespace App.API.Extensions.DI
 {
     internal static class LocalizationConfig
     {
-       internal static void ConfigureLocalization(this IServiceCollection services)
+        internal static void ConfigureLocalization(this IServiceCollection services)
         {
             services.Configure<RequestLocalizationOptions>(options =>
             {
@@ -17,7 +17,7 @@ namespace App.API.Extensions.DI
 
                 options.DefaultRequestCulture = new RequestCulture(culture: "en", uiCulture: "en");
                 options.SupportedCultures = supportedCultures;
-                options.SupportedUICultures = supportedCultures;                
+                options.SupportedUICultures = supportedCultures;
             });
         }
 

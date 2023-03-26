@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace App.Application.Services._Base
+﻿namespace App.Application.Services._Base
 {
     internal abstract class BaseService
     {
@@ -28,6 +22,6 @@ namespace App.Application.Services._Base
         protected void ClearErrors() => _errors.Clear();
 
         protected bool HasErrors() => _errors.Any();
-          
+
     }
 }

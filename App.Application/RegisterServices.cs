@@ -6,11 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace App.Application
 {
@@ -24,11 +20,11 @@ namespace App.Application
                 options.UseNpgsql(config.GetConnectionString("Default"), b => b.MigrationsAssembly("App.Application"));
             });
 
+            services.AddValidatorsFromAssemblyContaining<CreateUserDTOValidator>();
 
-
-            services.AddValidatorsFromAssemblyContaining<CreateUserDTOValidator>();           
-
-            services.AddTransient<IUsersService, UsersService>();  
+            //todo: automate the service registration?
+            //register services
+            services.AddTransient<IUsersService, UsersService>();
         }
 
         public static IdentityBuilder AddEFStores(this IdentityBuilder builder)

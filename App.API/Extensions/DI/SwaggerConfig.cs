@@ -11,7 +11,7 @@ namespace App.API.Extensions.DI
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title="API_NAME", Version="v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_NAME", Version = "v1" });
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
@@ -25,7 +25,7 @@ namespace App.API.Extensions.DI
                 });
 
 
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement 
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
                         new OpenApiSecurityScheme
@@ -40,7 +40,7 @@ namespace App.API.Extensions.DI
                     }
                 });
 
-                var apiProject = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";  
+                var apiProject = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var apiXmlPath = Path.Combine(AppContext.BaseDirectory, apiProject);
                 c.IncludeXmlComments(apiXmlPath);
 

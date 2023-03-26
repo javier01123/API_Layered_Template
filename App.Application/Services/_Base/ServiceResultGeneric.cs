@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace App.Application.Services._Base
 {
@@ -13,7 +8,7 @@ namespace App.Application.Services._Base
         private ServiceResult(List<Error> errors)
         {
             Errors = errors.AsReadOnly();
-            ReturnValue =default(T);
+            ReturnValue = default;
         }
 
         private ServiceResult(List<Error> errors, T returnValue)
@@ -29,8 +24,8 @@ namespace App.Application.Services._Base
 
         public static ServiceResult<T> Failure(List<Error> errors)
         {
-            if(errors == null) throw new ArgumentNullException(nameof(errors));  
-            if(!errors.Any()) throw new ArgumentNullException($"{nameof(errors)} cannot be empty");
+            if (errors == null) throw new ArgumentNullException(nameof(errors));
+            if (!errors.Any()) throw new ArgumentNullException($"{nameof(errors)} cannot be empty");
             return new ServiceResult<T>(errors, default);
         }
 

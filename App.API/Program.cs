@@ -1,15 +1,15 @@
 
+using App.API.Extensions.DI;
 using App.API.Middleware;
-using App.Application.SharedResources;
 using App.Application;
+using App.Application.Loggers.Text;
+using App.Application.SharedResources;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Newtonsoft.Json.Serialization;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using App.API.Extensions.DI;
-using App.Application.Loggers.Text;
+using Newtonsoft.Json.Serialization;
+using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -34,7 +34,7 @@ services.AddProblemDetails(options =>
 {
     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 });
-    
+
 
 //services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -58,8 +58,8 @@ services.AddAplicationLayerServices(config);
 //fluent validation
 services.AddFluentValidationAutoValidation(opts =>
 {
-//prevent mixing fluent validation and data annotations
-    opts.DisableDataAnnotationsValidation= true;
+    //prevent mixing fluent validation and data annotations
+    opts.DisableDataAnnotationsValidation = true;
 }).AddFluentValidationClientsideAdapters();
 
 services.AddValidatorsFromAssemblyContaining<Program>();
@@ -77,7 +77,7 @@ if (app.Environment.IsDevelopment())
     //WARNING: dont use any origin in production
     app.UseCors(options => options.AllowAnyMethod()
                                   .AllowAnyHeader()
-                                  .AllowCredentials()                                    
+                                  .AllowCredentials()
                                   .WithOrigins("http://localhost:3000")
                 );
 }
@@ -87,7 +87,7 @@ app.UseStatusCodePages();
 app.UseMiddleware<AppExceptionsMiddleware>();
 
 
-    
+
 
 app.UseRequestLocalization();
 app.UseHttpsRedirection();

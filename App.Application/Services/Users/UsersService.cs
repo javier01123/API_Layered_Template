@@ -2,11 +2,6 @@
 using App.Application.Services._Base;
 using App.Application.Services.Users.DTO;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Application.Services.Users
 {
@@ -18,7 +13,7 @@ namespace App.Application.Services.Users
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         }
-        
+
         public async Task<ServiceResult> Register(RegisterUserDTO dto)
         {
             IdentityResult identityResult = await _userManager.CreateAsync(
@@ -30,7 +25,7 @@ namespace App.Application.Services.Users
 
             if (identityResult.Succeeded)
                 return ServiceResult.Success();
-     
+
             return ServiceResult.Failure(identityResult.MapResultToServiceErrors());
         }
 

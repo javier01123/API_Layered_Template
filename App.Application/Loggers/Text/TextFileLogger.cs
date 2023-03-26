@@ -1,11 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Application.Loggers.Text
 {
@@ -33,7 +27,7 @@ namespace App.Application.Loggers.Text
         {
             if (!IsEnabled(logLevel))
                 return;
-           
+
             string logsFolder = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "logs");
             string filename = $"logs_{DateTime.Now.ToString("yyyy-MM-dd")}.log";
             string fullFilePath = Path.Combine(logsFolder, filename);

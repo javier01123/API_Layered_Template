@@ -10,7 +10,7 @@ namespace App.API.Extensions
         {
             return Map(serviceResult.Errors);
         }
-       
+
         public static ModelStateDictionary ErrorsToModelState<T>(this ServiceResult<T> serviceResult)
         {
             return Map(serviceResult.Errors);
@@ -28,5 +28,5 @@ namespace App.API.Extensions
         }
     }
 }
- 
- 
+
+

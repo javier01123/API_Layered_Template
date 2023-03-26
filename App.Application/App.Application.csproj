@@ -24,6 +24,7 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="7.0.4" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="7.0.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.27.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

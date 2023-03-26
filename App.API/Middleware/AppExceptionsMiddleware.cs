@@ -25,12 +25,10 @@ namespace App.API.Middleware
             }
             catch (Exception ex)
             {
-
-                //todo: do i still need this if im returning the response on each service
-                //bad request: no
+                //todo: do i still need this if im returning the response on each service                
                 //notfound: i dont have a solution yet, maybe just let the ex go tru
                 switch (ex)
-                {                    
+                {
                     case NotFoundEx e:
                         problemDetails.Status = (int)HttpStatusCode.NotFound;
                         problemDetails.Title = "Not Found.";
@@ -47,12 +45,10 @@ namespace App.API.Middleware
                 }
 
                 problemDetails.Detail = ex.Message;
-
                 problemDetails.Extensions["traceId"] = Activity.Current?.Id;
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = problemDetails.Status.Value;
 
-                
                 //serialize problem details
                 if (context.RequestServices.GetService<IProblemDetailsService>() is { } problemdetailsService)
                 {
@@ -62,8 +58,6 @@ namespace App.API.Middleware
                         ProblemDetails = problemDetails,
                     });
                 }
-
-
 
             }
         }
