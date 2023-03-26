@@ -25,12 +25,12 @@ namespace App.API.Middleware
             }
             catch (Exception ex)
             {
+
+                //todo: do i still need this if im returning the response on each service
+                //bad request: no
+                //notfound: i dont have a solution yet, maybe just let the ex go tru
                 switch (ex)
-                {
-                    case BadRequestEx e:
-                        problemDetails.Status = (int)HttpStatusCode.BadRequest;
-                        problemDetails.Title = "Validation error.";
-                        break;
+                {                    
                     case NotFoundEx e:
                         problemDetails.Status = (int)HttpStatusCode.NotFound;
                         problemDetails.Title = "Not Found.";

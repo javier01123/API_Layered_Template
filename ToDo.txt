@@ -1,6 +1,5 @@
 
-
--add text logs
+-not found exception?
 
 -localize Identity (current errors are shown in english)
 https://ziyad.info/en/articles/20-Localizing_Identity_Error_Messages
@@ -13,6 +12,7 @@ https://www.endpointdev.com/blog/2022/06/implementing-authentication-in-asp.net-
 -add custom property to user identity?
 
 Done:
+-add text logs
 -implement localization on fluent validation (it just works)
 -implement localization middleware.
 -add problem details middleware 
