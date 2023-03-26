@@ -8,12 +8,13 @@ using Newtonsoft.Json.Serialization;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using System;
 using App.API.Extensions.DI;
+using App.Application.Loggers.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var config = builder.Configuration;
+var logging = builder.Logging;
 
 // Add services to the container.
 
@@ -21,7 +22,7 @@ services.AddLogging();
 services.AddLocalization(o => { o.ResourcesPath = "Resources"; });
 services.ConfigureLocalization();
 //using our text logger
-//builder.Logging.AddTextLogs();
+services.AddTextFileLogging();
 
 services.AddProblemDetails(options =>
     options.CustomizeProblemDetails = (context) =>

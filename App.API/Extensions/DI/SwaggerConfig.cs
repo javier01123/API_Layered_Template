@@ -1,4 +1,4 @@
-﻿using App.Application.Loggers;
+﻿using App.Application.Loggers.Text;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -45,7 +45,7 @@ namespace App.API.Extensions.DI
                 c.IncludeXmlComments(apiXmlPath);
 
 
-                var applicationProject = $"{typeof(TextLogger).Assembly.GetName().Name}.xml";
+                var applicationProject = $"{typeof(TextFileLogger).Assembly.GetName().Name}.xml";
                 var applicationXmlPath = Path.Combine(AppContext.BaseDirectory, applicationProject);
                 c.IncludeXmlComments(applicationXmlPath);
 

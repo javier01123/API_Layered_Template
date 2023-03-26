@@ -1,4 +1,4 @@
-﻿using App.Application.Loggers;
+﻿using App.Application.Loggers.Text;
 using App.Common.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -15,7 +15,7 @@ namespace App.API.Middleware
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context, ILogger<TextLogger> logger)
+        public async Task Invoke(HttpContext context, ILogger<TextFileLogger> logger)
         {
             var problemDetails = new ProblemDetails();
 
