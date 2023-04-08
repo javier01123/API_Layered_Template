@@ -7,12 +7,12 @@ using System.Text;
 
 namespace App.Application.Modules.Jwt
 {
-    public class JwtTokenProvider
+    public class JwtProvider : IJwtProvider
     {
 
         private readonly IConfiguration _configuration;
 
-        public JwtTokenProvider(IConfiguration configuration)
+        public JwtProvider(IConfiguration configuration)
         {
             _configuration = configuration;
         }

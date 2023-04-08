@@ -1,14 +1,13 @@
-﻿using App.API.Controllers.Common;
-using App.Application.Services._Base;
+﻿using App.Application.Services._Base;
 using App.Application.Services.Users;
 using App.Application.Services.Users.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.API.Controllers
+namespace App.API.Controllers.Common
 {
 
-    [Route("api/users")]
+    [Route("api/sign-up")]
     public class UsersController : APIBaseController
     {
         private readonly IUsersService _usersService;

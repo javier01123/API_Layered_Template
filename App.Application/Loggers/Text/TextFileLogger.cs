@@ -31,7 +31,7 @@ namespace App.Application.Loggers.Text
             string logsFolder = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "logs");
             string filename = $"logs_{DateTime.Now.ToString("yyyy-MM-dd")}.log";
             string fullFilePath = Path.Combine(logsFolder, filename);
-            string logRecord = string.Format("{0} [{1}] {2} {3}", "[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss+00:00") + "]", logLevel.ToString(), formatter(state, exception), exception != null ? exception.StackTrace : "");
+            string logRecord = string.Format("{0} [{1}] {2} {3}", "[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss+00:00") + "]", logLevel.ToString(), formatter(state, exception) , exception != null ? exception.StackTrace : "");
 
             if (!Directory.Exists(logsFolder))
                 Directory.CreateDirectory(logsFolder);

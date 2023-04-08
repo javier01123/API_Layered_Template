@@ -1,16 +1,18 @@
 
 -not found exception?
 -add documentation to Open API
+-implement identity and jwt
+https://www.endpointdev.com/blog/2022/06/implementing-authentication-in-asp.net-core-web-apis/
+
 
 -localize Identity (current errors are shown in english)
 https://ziyad.info/en/articles/20-Localizing_Identity_Error_Messages
 -see how AddDefaultTokenProviders() works
 https://stackoverflow.com/questions/35434427/adddefaulttokenproviders-what-is-it-and-how-to-use-those-default-providers
--implement identity and jwt
-https://www.endpointdev.com/blog/2022/06/implementing-authentication-in-asp.net-core-web-apis/
 -add docker compose file
 -como regresa los errores de modelo MVC? vacio o con la propiedad "__all__"?
 -add custom property to user identity?
+-implement IOptions pattern?
 
 Done:
 -add text logs

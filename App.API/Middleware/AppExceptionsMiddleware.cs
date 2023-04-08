@@ -37,14 +37,14 @@ namespace App.API.Middleware
                         problemDetails.Status = (int)HttpStatusCode.Forbidden;
                         problemDetails.Title = "Permissions error.";
                         break;
-                    case Exception e:
+                    case Exception:                  
                         logger.LogError(ex, $"Source: {nameof(AppExceptionsMiddleware)}, Activity Id: {Activity.Current?.Id}");
                         problemDetails.Status = (int)HttpStatusCode.InternalServerError;
                         problemDetails.Title = "An error occured while processing your request.";
                         break;
                 }
 
-                problemDetails.Detail = ex.Message;
+                problemDetails.Detail = ex?.InnerException?.Message ?? ex.Message;
                 problemDetails.Extensions["traceId"] = Activity.Current?.Id;
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = problemDetails.Status.Value;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 
 namespace App.Application.Services._Base
 {
@@ -22,6 +23,11 @@ namespace App.Application.Services._Base
         public bool IsSuccesful => !Errors.Any();
 
 
+        public static ServiceResult<T> Failure(string singleError)
+        {             
+            return Failure(new List<Error> { new Error(singleError) });
+        }
+
         public static ServiceResult<T> Failure(List<Error> errors)
         {
             if (errors == null) throw new ArgumentNullException(nameof(errors));
@@ -29,7 +35,7 @@ namespace App.Application.Services._Base
             return new ServiceResult<T>(errors, default);
         }
 
-        public static ServiceResult<T> Success<T>(T returnValue) where T : struct
+        public static ServiceResult<T> Success<T>(T returnValue) 
         {
             return new ServiceResult<T>(new List<Error>(), returnValue);
         }

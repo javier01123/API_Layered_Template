@@ -1,4 +1,6 @@
 ﻿using App.Application.Context;
+using App.Application.Modules.Jwt;
+using App.Application.Services.Auth;
 using App.Application.Services.Users;
 using App.Application.Services.Users.DTO;
 using FluentValidation;
@@ -21,10 +23,12 @@ namespace App.Application
             });
 
             services.AddValidatorsFromAssemblyContaining<CreateUserDTOValidator>();
+            services.AddTransient<IJwtProvider, JwtProvider>();
 
             //todo: automate the service registration?
             //register services
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IAuthService, AuthService>(); 
         }
 
         public static IdentityBuilder AddEFStores(this IdentityBuilder builder)
