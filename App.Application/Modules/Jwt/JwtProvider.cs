@@ -19,7 +19,7 @@ namespace App.Application.Modules.Jwt
 
         public string CreateToken(IdentityUser user)
         {
-            int expirationInMinutes = int.Parse(_configuration["Jwt:ExpiratonInMinutes"]);
+            int expirationInMinutes = int.Parse(_configuration["Jwt:ExpirationInMinutes"]);
             var expiration = DateTime.UtcNow.AddMinutes(expirationInMinutes);
 
             var token = CreateJwtToken(
